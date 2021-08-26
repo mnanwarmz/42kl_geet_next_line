@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/27 07:03:32 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/27 07:19:50 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*get_until_nl(char *str)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return (NULL);
 	while (str[i] != '\0')
 	{
 		if (str[i++] == '\n')
@@ -126,4 +128,12 @@ char	*get_next_line(int fd)
 	}
 	save = get_until_nl(save);
 	return (save);
+}
+
+int main()
+{
+	int fd;
+
+	fd = open("file.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
 }
