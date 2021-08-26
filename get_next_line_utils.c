@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:43:03 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/26 15:41:56 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/27 07:00:59 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_strdel(char **adr_str)
 	return (NULL);
 }
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen(char const *str)
 {
 	size_t	i;
 

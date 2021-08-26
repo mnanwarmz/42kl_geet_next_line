@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/26 19:57:57 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/27 07:02:20 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,16 @@
 char	*get_until_nl(char *str)
 {
 	int		i;
-	char	*temp;
 
 	i = 0;
-	temp = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
 	while (str[i] != '\0')
 	{
-		temp[i] = str[i];
-		if (str[i] == '\n')
+		if (str[i++] == '\n')
 			break ;
 		i++;
 	}
-	ft_strdel(&str);
-	return (temp);
+	str = ft_substr(str, 0, i);
+	return (str);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -78,6 +75,33 @@ char	*ft_strchr(const char *s, int c)
 	return ((char *)&s[i]);
 }
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	j;
+	size_t	s_len;
+	char	*result;
+
+	j = 0;
+	if (s)
+	{
+		s_len = ft_strlen(s);
+		if (start >= s_len)
+			return (ft_strdup((char *)""));
+		if (len > s_len)
+			len = s_len + 1 - start;
+		if (len > (s_len - start))
+			len = s_len - start;
+		result = malloc(sizeof(char) * (len + 1));
+		if (!result)
+			return (NULL);
+		while (s[start] && j < len)
+			result[j++] = s[start++];
+		result[j] = '\0';
+		return (result);
+	}
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	static char			*save;
@@ -102,4 +126,12 @@ char	*get_next_line(int fd)
 	}
 	save = get_until_nl(save);
 	return (save);
+}
+
+int main()
+{
+	int fd;
+
+	fd = open("file.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
 }
