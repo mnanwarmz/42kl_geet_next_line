@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/25 08:38:33 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/26 10:34:03 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ char	*get_until_nl(char *str)
 
 	i = 0;
 	temp = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
-	while (str[i] != '\n' && str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		temp[i] = str[i];
+		if (str[i] == '\n')
+			break ;
 		i++;
 	}
-	temp[i] = '\n';
 	return (temp);
 }
 
@@ -39,9 +40,9 @@ char	*get_next_line(int fd)
 	char				*save;
 	int					reader;
 
-	save = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	save = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	reader = read(fd, buffer, BUFFER_SIZE);
 	while (!has_nl(save) && reader != 0)
 	{
@@ -53,14 +54,4 @@ char	*get_next_line(int fd)
 	}
 	save = get_until_nl(save);
 	return (save);
-}
-
-int	main(void)
-{
-	int				fd;
-	char			*str;
-
-	fd = open("file.txt", O_RDONLY);
-	str = get_next_line(fd);
-	printf("%s", str);
 }
