@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:43:03 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/20 06:53:56 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/26 15:41:56 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,44 @@ int	has_nl(char *str)
 	return (0);
 }
 
+char	*ft_strdup(char *src)
+{
+	char	*result;
+	int		i;
+
+	result = (char *)malloc(ft_strlen(src) * sizeof(char) + 1);
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		result[i] = src[i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}
+
+void	ft_add_buf_to_str(char **str, void *buf)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(*str, buf);
+	ft_strdel(str);
+	*str = tmp;
+	return ;
+}
+
+char	*ft_strdel(char **adr_str)
+{
+	if (adr_str != NULL && *adr_str != NULL)
+	{
+		free(*adr_str);
+		*adr_str = NULL;
+	}
+	return (NULL);
+}
+
 size_t	ft_strlen(char *str)
 {
 	size_t	i;
@@ -41,33 +79,4 @@ size_t	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	size_t	total;
-	size_t	i;
-	size_t	j;
-	char	*result;
-
-	i = 0;
-	j = 0;
-	total = ft_strlen(s1) + ft_strlen(s2) + 1;
-	result = (char *)malloc(sizeof(char) * total);
-	if (result)
-	{
-		while (s1[i])
-		{
-			result[i] = s1[i];
-			i++;
-		}
-		while (s2[j])
-		{
-			result[i + j] = s2[j];
-			j++;
-		}
-		result[i + j] = '\0';
-		return (result);
-	}
-	return (NULL);
 }
