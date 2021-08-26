@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/27 07:47:27 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/27 07:52:43 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ char	*get_until_nl(char *str)
 	int		i;
 
 	i = 0;
-	if (str == NULL)
-		return (NULL);
 	while (str[i] != '\0' || str[i] != '\n')
 	{
 		if (str[i++] == '\n')
@@ -126,6 +124,8 @@ char	*get_next_line(int fd)
 		if (ft_strchr(save, '\n'))
 			break ;
 	}
+	if(save == NULL)
+		return (NULL);
 	save = get_until_nl(save);
 	return (save);
 }
