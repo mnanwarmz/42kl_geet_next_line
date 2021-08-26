@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:45:34 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/26 15:41:46 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/26 16:07:57 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ char				*ft_strjoin(char *s1, char *s2);
 char				*ft_strdup(char *src);
 void				ft_add_buf_to_str(char **str, void *buf);
 char				*ft_strdel(char **adr_str);
+char				*ft_strchr(const char *s, int c);
 size_t				ft_strlen(char *str);
 #endif

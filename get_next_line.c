@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/26 16:05:53 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/26 16:07:30 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (NULL);
 }
 
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != (char)c)
+	{
+		if (s[i] == '\0')
+			return (NULL);
+		i++;
+	}
+	return ((char *)&s[i]);
+}
+
 char	*get_next_line(int fd)
 {
 	static char			*save;
@@ -82,7 +96,7 @@ char	*get_next_line(int fd)
 			save = ft_strdup(buffer);
 		else
 			ft_add_buf_to_str(&save, buffer);
-		if (!has_nl(save))
+		if (ft_strchr(save, '\n'))
 			break ;
 	}
 	save = get_until_nl(save);
