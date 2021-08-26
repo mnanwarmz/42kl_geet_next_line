@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/26 15:42:58 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/26 15:46:54 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	reader = 1;
-	save = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	reader = read(fd, buffer, BUFFER_SIZE);
 	while (!has_nl(save) && reader != 0)
 	{
 		if (reader == -1)
