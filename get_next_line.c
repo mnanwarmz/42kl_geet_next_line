@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/27 07:20:36 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/27 07:39:11 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ char	*get_until_nl(char *str)
 	int		i;
 
 	i = 0;
-	if (!str)
+	if (!*str)
 		return (NULL);
-	while (str[i] != '\0')
+	while (str[i] != '\0' || str[i] != '\n')
 	{
 		if (str[i++] == '\n')
 			break ;
