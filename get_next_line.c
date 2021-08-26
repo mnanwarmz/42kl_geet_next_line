@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/26 16:07:30 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/26 19:56:40 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*get_until_nl(char *str)
 			break ;
 		i++;
 	}
+	ft_strdel(str);
 	return (temp);
 }
 
