@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/26 15:46:54 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/26 16:03:55 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char	*get_next_line(int fd)
 	reader = 1;
 	while (!has_nl(save) && reader != 0)
 	{
+		reader = read(fd, buffer, BUFFER_SIZE);
 		if (reader == -1)
 			return (NULL);
 		buffer[reader] = '\0';
@@ -81,7 +82,6 @@ char	*get_next_line(int fd)
 			save = ft_strdup(buffer);
 		else
 			ft_add_buf_to_str(&save, buffer);
-		reader = read(fd, buffer, BUFFER_SIZE);
 	}
 	save = get_until_nl(save);
 	return (save);
