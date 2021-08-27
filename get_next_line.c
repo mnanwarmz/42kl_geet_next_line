@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/27 08:05:24 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/27 08:23:06 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	*get_next_line(int fd)
 	while (reader)
 	{
 		reader = read(fd, buffer, BUFFER_SIZE);
-		if (reader == -1)
+		if (reader == -1 || (reader == 0 && !*save) || fd < 0)
 			return (NULL);
 		buffer[reader] = '\0';
 		if (save == NULL)
