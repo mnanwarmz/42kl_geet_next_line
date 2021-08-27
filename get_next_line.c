@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/27 07:54:01 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/27 08:05:24 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ char	*get_next_line(int fd)
 		if (ft_strchr(save, '\n'))
 			break ;
 	}
-	if (!*save)
+	if (!save)
 		return (NULL);
 	save = get_until_nl(save);
 	return (save);
