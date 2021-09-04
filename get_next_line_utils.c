@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:43:03 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/27 07:00:59 by azaid            ###   ########.fr       */
+/*   Updated: 2021/08/29 06:46:32 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-int	has_nl(char *str)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	int	i;
+	char	*new;
+	size_t	i;
 
 	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
+	new = (char *)malloc(sizeof(char) * nmemb * size);
+	if (!new)
+		return (NULL);
+	while (i < nmemb * size)
 	{
-		if (str[i] == '\n')
-			return (1);
+		new[i] = 0;
 		i++;
 	}
-	return (0);
+	return (new);
 }
 
 char	*ft_strdup(char *src)

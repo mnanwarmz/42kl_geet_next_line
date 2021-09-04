@@ -6,7 +6,7 @@
 /*   By: azaid <azaid@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 13:42:57 by azaid             #+#    #+#             */
-/*   Updated: 2021/08/27 08:24:59 by azaid            ###   ########.fr       */
+/*   Updated: 2021/09/04 20:44:54 by azaid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@ char	*get_until_nl(char *str)
 	int		i;
 
 	i = 0;
-	while (str[i] != '\0' || str[i] != '\n')
-	{
-		if (str[i++] == '\n')
-			break ;
+	while (str[i] != '\0' && str[i] != '\n')
 		i++;
-	}
 	str = ft_substr(str, 0, i);
+	str[i] = '\n';
 	return (str);
 }
 
@@ -107,6 +104,7 @@ char	*get_next_line(int fd)
 	static char			*save;
 	char				buffer[BUFFER_SIZE + 1];
 	int					reader;
+	char				*tmp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -114,16 +112,15 @@ char	*get_next_line(int fd)
 	while (reader)
 	{
 		reader = read(fd, buffer, BUFFER_SIZE);
-		if (reader == -1 || (reader == 0 && !*save) || fd < 0)
+		if (reader == -1 || (reader == 0 && !save) || fd < 0)
 			return (NULL);
 		buffer[reader] = '\0';
-		if (save == NULL)
-			save = ft_strdup(buffer);
-		else
-			ft_add_buf_to_str(&save, buffer);
+		if (!save)
+			save = ft_calloc(1, 1);
+		save = ft_strjoin(save, buffer);
 		if (ft_strchr(save, '\n'))
 			break ;
 	}
-	save = get_until_nl(save);
-	return (save);
+	tmp = get_until_nl(save);
+	return (tmp);
 }
